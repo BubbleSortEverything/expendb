@@ -17,7 +17,7 @@ def get_users():
 @user_bp.route('/users', methods=['POST'])
 def create_user():
     data = request.get_json()
-    errors = user_schema.validate(data)
+    errors = UserSchema.validate(data)
 
     if errors:
         return jsonify(errors), 400
@@ -26,4 +26,4 @@ def create_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return user_schema.jsonify(new_user), 201
+    return UserSchema.jsonify(new_user), 201

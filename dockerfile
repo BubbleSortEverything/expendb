@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 5000
 
 # Start the Flask server
-CMD ["python", "run.py"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
