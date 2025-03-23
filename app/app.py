@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
+from flask_restx import Api, Resource, fields
 import sqlite3
 
 app = Flask(__name__)
+api = Api(app, version='0.0', title='User Expenses API', description='A Flask REST API with documentation')
 
 DATABASE = 'database.db'
 
@@ -29,7 +31,7 @@ def initialize_database():
     # Call the create_table function before handling the first request
     create_table()
 
-
+@api.route('/users')
 @app.route('/users', methods=['GET'])
 def get_users():
     # Connect to the SQLite database
